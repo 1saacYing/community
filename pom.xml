@@ -37,7 +37,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-<!--        [1.2 搭建开发环节] devtools：修改代码后编译后重新启动-->
+<!--        [1.2 搭建开发环节] devtools作用：修改代码进行编译，提供重新启动-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
