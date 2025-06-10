@@ -17,7 +17,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ContextConfiguration(classes = CommunityApplication.class)
-//[5. Mybatis 入门]
+//[1.5 Mybatis入门]
 public class MapperTests {
 
     @Autowired

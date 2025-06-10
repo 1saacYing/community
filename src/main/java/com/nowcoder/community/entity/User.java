@@ -2,7 +2,7 @@ package com.nowcoder.community.entity;
 
 import java.util.Date;
 
-//[5. Mybatis 入门]
+//[1.5 Mybatis入门]
 //用于存储从数据库获取的数据或者准备插入数据库的数据。它通常会映射到数据库中的一张表，其中类的属性对应表的列。
 public class User {
 

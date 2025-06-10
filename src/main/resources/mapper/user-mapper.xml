@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--        //[5. Mybatis 入门]-->
+<!--        //[1.5 Mybatis入门]-->
 <mapper namespace="com.nowcoder.community.dao.UserMapper">
 
 <!--    <select id="selectById" resultType="com.nowcoder.community.entity.User">-->
