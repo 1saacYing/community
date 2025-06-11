@@ -48,7 +48,7 @@
         where email = #{email}
     </select>
 
-<!--    复杂的入参需要申明parameterType，对应主键keyProperty-->
+<!--    复杂的入参需要申明parameterType，对应主键keyProperty，用于mybits从mysql获取id-->
     <insert id="insertUser" parameterType="com.nowcoder.community.entity.User" keyProperty="id">
         insert into user (<include refid="insertFields"></include>)
 <!--        这里是entity类中的属性，驼峰命名-->

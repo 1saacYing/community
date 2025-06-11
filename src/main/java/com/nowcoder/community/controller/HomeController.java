@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-// [6. 开发社区首页]
+// [1.6 开发社区首页]
 @Controller
 public class HomeController {
 

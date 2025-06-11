@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-// [6. 开发社区首页]
+// [1.6 开发社区首页]
 @Mapper
 public interface DiscussPostMapper {
 

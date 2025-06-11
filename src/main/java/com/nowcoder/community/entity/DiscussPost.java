@@ -2,7 +2,7 @@ package com.nowcoder.community.entity;
 
 import java.util.Date;
 
-// [6. 开发社区首页]
+// [1.6 开发社区首页]
 public class DiscussPost {
 
     private int id;

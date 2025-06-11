@@ -1,6 +1,6 @@
 package com.nowcoder.community.entity;
 
-// [6. 开发社区首页]
+// [1.6 开发社区首页]
 /**
  * 封装分页相关信息
  */

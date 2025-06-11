@@ -5,7 +5,7 @@ import com.nowcoder.community.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-// [6. 开发社区首页]
+// [1.6 开发社区首页]
 @Service
 public class UserService {
 
