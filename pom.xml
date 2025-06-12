@@ -14,6 +14,18 @@
         <spring-boot.version>2.6.13</spring-boot.version>
     </properties>
     <dependencies>
+<!--        [2.1 发送邮件]-->
+<!--        由于项目引入了2.x.x得springboot，所以依赖版本会被自动匹配，避免使用高版本导致依赖不兼容-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+<!--        邮箱密码明文加密-->
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>3.0.4</version>
+        </dependency>
 <!--        [1.5 MyBatis入门]-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
