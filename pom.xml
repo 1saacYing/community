@@ -14,13 +14,18 @@
         <spring-boot.version>2.6.13</spring-boot.version>
     </properties>
     <dependencies>
-<!--        [2.1 发送邮件]-->
-<!--        由于项目引入了2.x.x得springboot，所以依赖版本会被自动匹配，避免使用高版本导致依赖不兼容-->
+<!--        [2.2 开发注册功能]-提交注册数据 jar包提供判断字符串，集合等常用数据空值的情况-->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.17.0</version>
+        </dependency>
+<!--        [2.1 发送邮件] 由于项目引入了2.x.x得springboot，所以依赖版本会被自动匹配，避免使用高版本导致依赖不兼容-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
-<!--        邮箱密码明文加密-->
+<!--        [2.1 发送邮件] 邮箱密码明文加密-->
         <dependency>
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
