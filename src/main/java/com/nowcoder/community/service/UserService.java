@@ -69,9 +69,9 @@ public class UserService {
             return map;
         }
         // 验证邮箱
-        u = userMapper.selectByName(user.getEmail());
+        u = userMapper.selectByEmail(user.getEmail());
         if(u != null) {
-            map.put("usernameMsg", "该邮箱已被注册！");
+            map.put("emailMsg", "该邮箱已被注册！");
             return map;
         }
         // 注册用户，密码加密，落表
