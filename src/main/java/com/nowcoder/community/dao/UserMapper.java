@@ -2,6 +2,7 @@ package com.nowcoder.community.dao;
 
 import com.nowcoder.community.entity.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 //[1.5 Mybatis入门]
@@ -17,7 +18,8 @@ public interface UserMapper {
 
     int  insertUser(User user);
 
-    int updateStatus(int id, int status);
+//    必须使用 @Param 注解以匹配 XML 中的 #{xxx} 表达式。
+    int updateStatus(@Param("id") int id, @Param("status") int status);
 
     int updateHeader(int id, String headerUrl);
 

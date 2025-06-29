@@ -26,6 +26,8 @@
         id, username, password, salt, email, type, status, activation_code, header_url, create_time
     </sql>
 
+
+<!--    Java 基本类型字段若未赋值，默认为对应初始值（如 int 为 0，boolean 为 false），MyBatis 会将其插入数据库；引用类型如 String、Date 默认为 null，MyBatis 会插入 NULL -->
     <sql id="insertFields">
         username, password, salt, email, type, status, activation_code, header_url, create_time
     </sql>

@@ -1,7 +1,8 @@
 package com.nowcoder.community.service;
 
 import com.nowcoder.community.dao.UserMapper;
-import com.nowcoder.community.entity.User;
+import com.nowcoder.community.entity.User;;
+import com.nowcoder.community.util.CommunityConstant;
 import com.nowcoder.community.util.CommunityUtil;
 import com.nowcoder.community.util.MailClient;
 import org.apache.commons.lang3.StringUtils;
@@ -17,9 +18,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-// [1.6 开发社区首页]/[2.2 开发注册功能]
+// [1.6 开发社区首页]/[2.2 开发注册功能]/[2.2 开发注册功能-2]
 @Service
-public class UserService {
+public class UserService implements CommunityConstant {
 
     @Autowired
     private UserMapper userMapper;
@@ -93,7 +94,7 @@ public class UserService {
         // mapper配置<insert id="insertUser" parameterType="com.nowcoder.community.entity.User" keyProperty="id">
         // 加 properties配置 mybatis.configuration.useGeneratedKeys=true
         // 插入数据后把数据库生成的主键设置到 User 类的 id 属性中
-        String url = domain + contextPath + "/activation/" + user.getId() + user.getActivationCode();
+        String url = domain + contextPath + "/activation/" + user.getId() + "/" + user.getActivationCode();
         context.setVariable("url", url);
         String content = templateEngine.process("/mail/activation", context);
         mailClient.sendMail(user.getEmail(), "激活账号", content);
@@ -101,5 +102,24 @@ public class UserService {
         return map;
 
     }
-
+//    [2.2 开发注册功能-2] 激活业务逻辑->controller处理请求
+    /**
+     * 激活用户账户
+     * 流程：查询用户 → 判断状态 → 更新状态（如匹配）
+     * 学习点：
+     * 1. 典型数据库操作流程：查询 → 判断 → 更新
+     * 2. 使用常量统一管理状态码（ACTIVATION_SUCCESS 等）
+     * 3. 注意空值处理和生产环境日志记录
+     */
+    public int activation(int id, String code) {
+        User user = userMapper.selectById(id);
+        if (user.getStatus() == 1) {
+            return ACTIVATION_REPEAT;
+        } else if (user.getActivationCode().equals(code)) {
+            userMapper.updateStatus(id, 1);
+            return ACTIVATION_SUCCESS;
+        } else {
+            return ACTIVATION_FAILURE;
+        }
+    }
 }
