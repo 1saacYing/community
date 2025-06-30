@@ -1,3 +1,6 @@
+//[2.4 生成验证码] 基于jquery语法实现刷新验证码按钮逻辑
+var CONTEXT_PATH = "/community"
+
 window.alert = function(message) {
 	if(!$(".alert-box").length) {
 		$("body").append(

@@ -94,8 +94,11 @@
 						</div>
 						<div class="col-sm-4">
 <!--							[2.2 开发注册功能-2]使用 Thymeleaf 动态生成验证码图片的路径-->
-							<img th:src="@{/img/captcha.png}" style="width:100px;height:40px;" class="mr-2"/>
-							<a href="javascript:;" class="font-size-12 align-bottom">刷新验证码</a>
+<!--							<img th:src="@{/img/captcha.png}" style="width:100px;height:40px;" class="mr-2"/>-->
+<!--							[2.4 生成验证码] 使用kaptcha生成的图片-->
+							<img th:src="@{/kaptcha}" id="kaptcha" style="width:100px;height:40px;" class="mr-2"/>
+<!--							[2.4 生成验证码] 按钮刷新验证码,使用js脚本-->
+							<a href="javascript:refresh_kaptcha();" class="font-size-12 align-bottom">刷新验证码</a>
 						</div>
 					</div>				
 					<div class="form-group row mt-4">
@@ -183,5 +186,16 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 	<!--[2.2 开发注册功能-2]使用 Thymeleaf 动态生成资源路径-->
 	<script th:src="@{/js/global.js}"></script>
+	<!--
+	[2.4 生成验证码] 基于jquery语法实现刷新验证码按钮逻辑
+	拼接请求路径，global.js设置全局变量 CONTEXT_PATH（上下文路径）作为基础路径
+	添加随机参数 `p`，保证每次请求路径不同，从而绕过缓存机制，防止浏览器或缓存服务器使用旧资源
+	-->
+	<script>
+		function refresh_kaptcha() {
+			var path = CONTEXT_PATH + "/kaptcha?p=" + Math.random();
+			$("#kaptcha").attr("src", path);
+		}
+	</script>
 </body>
 </html>
