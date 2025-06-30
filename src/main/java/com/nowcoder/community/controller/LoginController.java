@@ -41,13 +41,14 @@
         // [2.2 开发注册功能] GET显示注册页面,返回html页面
         @RequestMapping(path = "/register", method = RequestMethod.GET)
         public String getRegisterPage() {
-            return "/site/register.html";
+            return "/site/register.html"; //1.不推荐加 .html 后缀 2. 路径错误（以 / 开头会被认为是绝对路径）如下 site/login
         }
 
         // [2.2 开发注册功能-2] GET显示注册页面,返回html页面
+        //在 Spring Boot + Thymeleaf 项目中，控制器返回视图名时不要加 .html 后缀，由框架自动解析更规范、安全、易维护
         @RequestMapping(path = "/login", method = RequestMethod.GET)
         public String getLoginPage() {
-            return "/site/login.html";
+            return "site/login";
         }
 
         // [2.2 开发注册功能] POST处理用户提交的注册信息并反馈结果
