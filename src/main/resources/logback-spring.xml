@@ -21,7 +21,7 @@
 <!--        以追加形式存储-->
         <append>true</append>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-<!--            日志格式 日期-级别-线程-日志所在类-文件及行-详情内容-->
+<!--            日志格式:日期,级别,线程,日志所在类名（最多显示10个字符，超出截断）,文件及行,详情内容-->
             <pattern>%d %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
             <charset>utf-8</charset>
         </encoder>
