@@ -49,7 +49,8 @@
 								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item text-center" href="site/profile.html">个人主页</a>
 									<a class="dropdown-item text-center" href="site/setting.html">账号设置</a>
-									<a class="dropdown-item text-center" href="site/login.html">退出登录</a>
+<!--									[2.5 开发登入、退出功能] th:href动态生成href属性值，此处"@{/logout}"表示应用的相对URL路径。-->
+									<a class="dropdown-item text-center" th:href="@{/logout}">退出登录</a>
 									<div class="dropdown-divider"></div>
 									<span class="dropdown-item text-center text-secondary">nowcoder</span>
 								</div>

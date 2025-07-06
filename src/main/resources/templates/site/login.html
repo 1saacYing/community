@@ -65,12 +65,22 @@
 		<div class="main">
 			<div class="container pl-5 pr-5 pt-3 pb-3 mt-3 mb-3">
 				<h3 class="text-center text-info border-bottom pb-3">登&nbsp;&nbsp;录</h3>
-				<form class="mt-5">				
+<!--				[2.5 开发登入、退出功能] 申明表单提交路径-->
+<!--				th:action="@{...}"用于生成 URL 路径。这里的 /login 是一个相对路径，最终会被解析为：[contextPath]/login-->
+				<form class="mt-5" method="post" th:action="@{/login}">
 					<div class="form-group row">
 						<label for="username" class="col-sm-2 col-form-label text-right">账号:</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control is-invalid" id="username" placeholder="请输入您的账号!" required>
-							<div class="invalid-feedback">
+<!--							[2.5 开发登入、退出功能] 1.配置name属性提交元素 2.th:value带会上次请求默认值 3.th:text动态提示报错 4.报错显示 th:classappend 动态添加表单 is-invalid 红色边框样式-->
+<!--								// NOTE name: 带有 name 的表单元素才会被提交，它必须写在 <input>、<select>、<textarea>这些表单控件中，Spring MVC 会根据 name 自动绑定controller层方法的参数（name=方法入参）-->
+<!--								// NOTE th:value 获取controller的入参，但是基础数据类型没有注入model  ${param.username} = request.getParameter(...)-->
+<!--							// todo is-invalid-->
+							<input type="text" class="form-control" id="username"
+								   name="username"
+								   th:value="${param.username}"
+								   th:classappend="${usernameMsg} ? 'is-invalid'"
+								   placeholder="请输入您的账号!" required>
+							<div class="invalid-feedback" th:text="${usernameMsg}">
 								该账号不存在!
 							</div>
 						</div>
@@ -78,8 +88,13 @@
 					<div class="form-group row mt-4">
 						<label for="password" class="col-sm-2 col-form-label text-right">密码:</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control is-invalid" id="password" placeholder="请输入您的密码!" required>
-							<div class="invalid-feedback">
+<!--							[2.5 开发登入、退出功能] 1.配置name属性提交元素 2.th:value带会上次请求默认值 3.th:text动态提示报错 4.报错显示 th:classappend 动态添加表单 is-invalid 红色边框样式-->
+							<input type="password" class="form-control" id="password"
+								   name="password"
+								   th:value="${param.password}"
+								   th:classappend="${passwordMsg} ? 'is-invalid'"
+								   placeholder="请输入您的密码!" required>
+							<div class="invalid-feedback" th:text="${passwordMsg}">
 								密码长度不能小于8位!
 							</div>							
 						</div>
@@ -87,8 +102,12 @@
 					<div class="form-group row mt-4">
 						<label for="verifycode" class="col-sm-2 col-form-label text-right">验证码:</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control is-invalid" id="verifycode" placeholder="请输入验证码!">
-							<div class="invalid-feedback">
+<!--							[2.5 开发登入、退出功能] 1.配置name属性提交元素 3.th:text动态提示报错 4.报错显示 th:classappend 动态添加表单 is-invalid 红色边框样式-->
+							<input type="text" class="form-control" id="verifycode"
+								   name="code"
+								   th:classappend="${codeMsg} ? 'is-invalid'"
+								   placeholder="请输入验证码!">
+							<div class="invalid-feedback" th:text="${codeMsg}">
 								验证码不正确!
 							</div>
 						</div>
@@ -104,7 +123,10 @@
 					<div class="form-group row mt-4">
 						<div class="col-sm-2"></div>
 						<div class="col-sm-10">
-							<input type="checkbox" id="remember-me" checked="checked">
+<!--							[2.5 开发登入、退出功能] [2.5 开发登入、退出功能] 1.配置name属性提交元素 2.th:check带会上次请求按钮默认状态-->
+							<input type="checkbox" id="remember-me"
+								   name="rememberme"
+								   th:checked="${param.rememberme}">
 							<label class="form-check-label" for="remember-me">记住我</label>
 							<a href="forget.html" class="text-danger float-right">忘记密码?</a>
 						</div>
@@ -187,7 +209,7 @@
 	<!--[2.2 开发注册功能-2]使用 Thymeleaf 动态生成资源路径-->
 	<script th:src="@{/js/global.js}"></script>
 	<!--
-	[2.4 生成验证码] 基于jquery语法实现刷新验证码按钮逻辑
+	[2.4 生成验证码] 基于jquery语法实现刷新验证码按钮逻辑，向后端发起请求获取验证码图片
 	拼接请求路径，global.js设置全局变量 CONTEXT_PATH（上下文路径）作为基础路径
 	添加随机参数 `p`，保证每次请求路径不同，从而绕过缓存机制，防止浏览器或缓存服务器使用旧资源
 	-->
